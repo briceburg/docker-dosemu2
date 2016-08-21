@@ -1,0 +1,52 @@
+FROM buildpack-deps:stretch
+
+#
+# build deps
+#
+
+# skipping dh-make, using fpm \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    ruby-dev \
+  && rm -rf /var/lib/apt/lists/* \
+  && gem install fpm
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    bison \
+    flex \
+    gpm \
+    libasound2-dev \
+    libgpm-dev\
+    libsdl2-dev \
+    libslang2-dev \
+    linux-headers-amd64 \
+    xfonts-utils \
+  && rm -rf /var/lib/apt/lists/*
+
+ENV \
+  DEBEMAIL="briceburg@gmail.com" \
+  DEBFULLNAME="Brice Burgess" \
+  CONFIGURE_PREFIX="/usr"
+
+
+RUN git clone https://github.com/stsp/dosemu2.git /tmp/package
+
+#
+# build
+#
+
+WORKDIR /tmp/package
+
+RUN autoreconf -v && ./configure --prefix=$CONFIGURE_PREFIX && make && \
+  curl -L http://prdownloads.sourceforge.net/dosemu/dosemu-freedos-1.0-bin.tgz?download > dosemu-freedos-1.0-bin.tgz
+
+RUN rm -rf /tmp/package-artifacts && make install DESTDIR=/tmp/package-artifacts \
+  && mkdir -p /tmp/package-artifacts/etc/dosemu/drives \
+  && ln -fs /usr/share/dosemu/freedos /tmp/package-artifacts/etc/dosemu/drives/d
+
+COPY etc/dosemu/ /tmp/package-artifacts/etc/dosemu/
+RUN  fpm -s dir -t deb -C /tmp/package-artifacts --name dosemu2 --depends libslang2 --depends libsdl2-2.0-0 -p dosemu2_amd64.deb
+
+
+# copy .deb to /tmp/vol/ on run
+
+CMD cp dosemu2_amd64.deb /tmp/vol/

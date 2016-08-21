@@ -1,0 +1,28 @@
+FROM alpine:3.4
+
+RUN apk add --update \
+    alsa-lib-dev \
+    autoconf \
+    bash \
+    bdftopcf \
+    bison \
+    build-base \
+    git \
+    flex \
+    fontconfig \
+    libao-dev \
+    linux-headers \
+    mkfontdir \
+    sdl2-dev \
+    slang-dev \
+  && apk add  libexecinfo-dev --update-cache --repository http://nl.alpinelinux.org/alpine/edge/main \
+  # && apk add  gpm-dev --update-cache --repository http://nl.alpinelinux.org/alpine/edge/testing \
+  && ( \
+    git clone https://github.com/briceburg/dosemu2.git /tmp/dosemu2 \
+    cd /tmp/dosemu2
+    make
+    ........
+  )
+  && rm -rf /var/cache/apk/*
+
+#ENTRYPOINT ["dosemu"]

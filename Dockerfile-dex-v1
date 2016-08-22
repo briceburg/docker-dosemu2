@@ -1,0 +1,21 @@
+FROM briceburg/dosemu2:debian
+
+# dex ( https://github.com/dockerland/dex )
+#  * prefer common home in derivatives.
+#  * default to interactive tty, sharing tty0 to allow console layout detection.
+LABEL \
+  org.dockerland.dex.api="v1" \
+  org.dockerland.dex.docker_home="dosemu" \
+  org.dockerland.dex.docker_flags="-it --device=/dev/tty0 -v /:/dex/rootfs:rw"
+
+# see dosemu2 manpage for flags,
+#  https://github.com/stsp/dosemu2/tree/devel/man
+# (run container w/ --entrypoint=bash , then `man dosemu`)
+ENV \
+  DOSEMU_CMD="dir" \
+  DOSEMU_FLAGS="-E"
+
+
+COPY dex/autoexec.bat /etc/dosemu/drives/c/autoexec.bat
+COPY dex/entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]

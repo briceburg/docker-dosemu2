@@ -46,7 +46,8 @@ RUN rm -rf /tmp/package-artifacts && make install DESTDIR=/tmp/package-artifacts
 COPY etc/dosemu/ /tmp/package-artifacts/etc/dosemu/
 RUN  fpm -s dir -t deb -C /tmp/package-artifacts --name dosemu2 --depends libslang2 --depends libsdl2-2.0-0 -p dosemu2_amd64.deb
 
-
+#
 # copy .deb to /tmp/vol/ on run
+#
 
 CMD cp dosemu2_amd64.deb /tmp/vol/

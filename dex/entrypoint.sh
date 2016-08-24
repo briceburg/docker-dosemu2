@@ -2,7 +2,7 @@
 
 cmd=${DOSEMU_CMD:-'echo'}
 flags=${DOSEMU_FLAGS:-'-E'}
-export DEX_DOCKER_WORKSPACE_DOS="${DEX_DOCKER_WORKSPACE//\//\\}"
+export DEX_HOST_PWD_DOSSAFE="${DEX_HOST_PWD//\//\\}"
 
 # convert arguments resembling posix paths => dos paths, resolving symlinks
 while [ $# -ne 0 ]; do
@@ -18,5 +18,6 @@ while [ $# -ne 0 ]; do
   shift
 done
 
+#stty cols 80 rows 25
 exec dosemu $flags "$cmd" 2>/dev/null
 exit $?

@@ -6,11 +6,11 @@ set TEMP=c:\tmp
 sound /e
 prompt $P$G
 system -s DOSEMU_VERSION
-system -s DEX_DOCKER_WORKSPACE_DOS
-echo Welcome to dex dosemu2! R: is rootfs, W: is workspace
+system -s DEX_HOST_PWD_DOSSAFE
+echo Welcome to dex dosemu2! R: is rootfs, H: is home
 echo     Build %DOSEMU_VERSION%
-lredir2 w: linux\fs/dex/workspace
-lredir2 r: linux\fs/dex/rootfs
+lredir2 h: linux\fs/dex/home
+lredir2 r: linux\fs/dex/workspace
 R:
-cd %DEX_DOCKER_WORKSPACE_DOS%
+cd %DEX_HOST_PWD_DOSSAFE%
 system -e

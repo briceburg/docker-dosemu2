@@ -18,4 +18,4 @@ debian: dosemu2_amd64.deb
 dosemu2_amd64.deb:
 	cd $(CWD)
 	docker build -t briceburg/dosemu2:build-debian -f Dockerfile-build-debian .
-	docker run --rm -v $(CWD):/tmp/vol/ dosemu2-build-debian
+	docker run --rm -v $(CWD):/tmp/vol/ briceburg/dosemu2:build-debian

@@ -14,6 +14,9 @@ COPY dex/autoexec.bat /etc/dosemu/drives/c/autoexec.bat
 COPY dex/entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 
+# allow writable c:\
+RUN chmod -R 777 /etc/dosemu/drives/c
+
 #
 # v1 dex-api
 #

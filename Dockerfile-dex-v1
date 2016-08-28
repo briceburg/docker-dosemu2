@@ -32,6 +32,6 @@ RUN chmod -R 777 /etc/dosemu/drives/c
 LABEL \
   org.dockerland.dex.api="v1" \
   org.dockerland.dex.docker_flags="-it" \
-  org.dockerland.dex.docker_groups="audio" \
-  org.dockerland.dex.docker_devices="snd" \
+  org.dockerland.dex.docker_groups="audio tty" \
+  org.dockerland.dex.docker_devices="snd tty0" \
   org.dockerland.dex.docker_workspace="/"

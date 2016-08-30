@@ -18,6 +18,9 @@ while [ $# -ne 0 ]; do
   shift
 done
 
-#stty cols 80 rows 25
-exec dosemu $flags "$cmd" 2>/dev/null
-exit $?
+stty cols 80 rows 25
+dosemu $flags "$cmd" 2>/dev/null
+retval=$?
+#echo "return to sanity"
+stty sane
+exit $retval

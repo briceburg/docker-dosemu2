@@ -26,12 +26,10 @@ RUN chmod -R 777 /etc/dosemu/drives/c
 #  * default to interactive tty, sharing tty0 to allow console layout detection.
 #  * mount host root to /dex/workspace (autoexec.bat mounts as R:)
 
-#@TODO investigate tty0 + tty group for autodection of layout
-#  alternatively pass $_layout to /etc/dosemu/dosemu/.conf
-
 LABEL \
   org.dockerland.dex.api="v1" \
+  org.dockerland.dex.docker_devices="tty0" \
   org.dockerland.dex.docker_flags="-it" \
-  org.dockerland.dex.docker_groups="audio tty" \
-  org.dockerland.dex.docker_devices="snd tty0" \
+  org.dockerland.dex.docker_groups="tty" \
+  org.dockerland.dex.docker_home="dosemu2" \
   org.dockerland.dex.docker_workspace="/"

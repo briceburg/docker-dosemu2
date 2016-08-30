@@ -1,11 +1,14 @@
 FROM debian:stretch
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
     gpm \
     libsdl2-2.0-0 \
     libslang2 \
     locales \
     man \
+    unzip \
+    wget \
   && rm -rf /var/lib/apt/lists/*
 
 ENV \

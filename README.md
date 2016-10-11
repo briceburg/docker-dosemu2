@@ -3,7 +3,7 @@
 docker container with [dosemu2](https://github.com/stsp/dosemu2).
 
 Used by [dex](https://github.com/dockerland/dex) for those _fun_ images that
-need dos such as [deltree](https://github.com/dockerland/dex-dockerfiles-extra/tree/master/images/deltree) and [edit](https://github.com/dockerland/dex-dockerfiles-extra/tree/master/images/edit)
+need dos such as [deltree](https://github.com/dockerland/dex-dockerfiles-extra/tree/master/dex-images/deltree and [edit](https://github.com/dockerland/dex-dockerfiles-extra/tree/master/dex-images/edit)
 
 ## usage
 

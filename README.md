@@ -10,13 +10,13 @@ need dos such as [deltree](https://github.com/dockerland/dex-dockerfiles-extra/t
 * to support console auto-detection of keyboard layout, pass tty0
 
 ```sh
-docker run briceburg/dosemu
+docker run briceburg/dosemu2
 ^^^ opens c:\ -- use `exitemu` to exit
 
-docker run --device=/dev/tty0 -e LANG=$LANG briceburg/dosemu
+docker run --device=/dev/tty0 -e LANG=$LANG briceburg/dosemu2
 ^^^ autodetects keyboard layout and passthru LANG
 
-docker run briceburg/dosemu -dumb dir
+docker run briceburg/dosemu2 -dumb dir
 ^^^ outputs directory listing of c:\
 ```
 
